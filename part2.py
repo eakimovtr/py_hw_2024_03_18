@@ -42,10 +42,7 @@ class NavalShip(Ship):
         return True if armament_type in self.armament.keys() else False
     
     def get_armament(self, armament_type: str) -> int:
-        if self.check_armament(armament_type):
-            return self.armament[armament_type]
-        else:
-            return 0
+        return self.armament[armament_type] if self.check_armament(armament_type) else 0
         
     def set_armament(self, armament_type: str, no_of_charges: int) -> None:
         if self.check_armament(armament_type):
@@ -59,9 +56,6 @@ class NavalShip(Ship):
                 self.set_armament(armament_type, self.get_armament(armament_type) - no_of_charges)
             else:
                 print("No such weaponry available!")
-                
-    def get_armament(self, armament_type: str) -> int:
-        return self.armament[armament_type] if self.check_armament(armament_type) else 0
                     
     def __str__(self) -> str:
         return super().__str__() + f"\nNo of artillery weapons: {self.armament['artillery']}"
